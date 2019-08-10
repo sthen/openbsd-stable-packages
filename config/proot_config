@@ -1,0 +1,8 @@
+chroot=/build
+PORT_USER=builder
+WRKOBJDIR=/tmp/pobj
+LOCKDIR=/tmp/locks
+PLIST_REPOSITORY=/data/plist
+DISTDIR=/data/distfiles
+PACKAGE_REPOSITORY=/data/packages
+actions=unpopulate
