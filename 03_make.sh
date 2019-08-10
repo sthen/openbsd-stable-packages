@@ -2,16 +2,19 @@
 
 set -x
 LOGDIR="/mnt/logs-stable/$(date +%Y%m%d-%H%M)"
+LIST=$(mktemp /tmp/packagename.XXXXXXXXXXXXXXX)
 
 doas mkdir -p $LOGDIR
 
-for port in $(cat /home/builder/pkgliste)
+cd /home/ports
+set -e
+
+for port in $(cat /home/builder/fulllist)
 do
 	PORTPATH=$(echo $port | sed 's,/,_,g')
-	cd /usr/ports/${port} || exit 1
-	make BULK=yes FETCH_PACKAGE= package | doas tee "${LOGDIR}/${PORTPATH}.log"
+	echo $port > $LIST
+	make SUBDIRLIST=$LIST BULK=yes FETCH_PACKAGE= package | doas tee "${LOGDIR}/${PORTPATH}.log"
 done
-
 
 
 for logs in /mnt/logs-stable/*tar.gz
