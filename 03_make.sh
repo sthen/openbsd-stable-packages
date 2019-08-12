@@ -1,7 +1,8 @@
 #!/bin/sh
 
 set -x
-LOGDIR="/mnt/logs-stable/$(date +%Y%m%d-%H%M)"
+ARCH=$(sysctl -n hw.machine)
+LOGDIR="/mnt/logs-stable/${ARCH}/$(date +%Y%m%d-%H%M)"
 LIST=$(mktemp /tmp/packagename.XXXXXXXXXXXXXXX)
 
 doas mkdir -p $LOGDIR
@@ -17,7 +18,7 @@ do
 done
 
 
-for logs in /mnt/logs-stable/*tar.gz
+for logs in /mnt/logs-stable/${ARCH}/*tar.gz
 do
 	FOLDER=$(echo $logs | sed 's/\.tar\.gz//')
 	test -d "$FOLDER" && doas rm -fr "$FOLDER"
