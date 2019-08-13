@@ -1,0 +1,14 @@
+Scripts should be started in the correct order:
+
+01_update_ports.sh	update the ports tree in /home/ports
+
+02_make_liste.sh	create ~/fullpkglist containing ports to build
+
+03_clean_packages.sh	delete extra packages and reinstall sqlports and rsync
+
+04_make.sh		use "make package" and store logs
+
+05_copy_packages.sh	create a list of packages from make show=PKGNAMES
+			command and feed rsync with it
+
+The /build partition doesn't contain any important information and could be formatted if needed.
