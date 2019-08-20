@@ -11,4 +11,7 @@ Scripts should be started in the correct order:
 05_copy_packages.sh	create a list of packages from make show=PKGNAMES
 			command and feed rsync with it
 
+06_send_mail.sh		send a mail to tell sthen@ and naddy@ about packages
+			to sign
+
 The /build partition doesn't contain any important information and could be formatted if needed.
