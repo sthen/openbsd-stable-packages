@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ARCH=$(uname -p)
+ARCH=$(machine -a)
 
 test -f config/rsync_output && grep tgz$ config/rsync_output >/dev/null
 if [ $? -ne 0 ]
@@ -14,6 +14,6 @@ set -x
 	printf "Hello. New package(s) to sign for ${ARCH}-stable.\n\n---\n"
 	grep tgz$ config/rsync_output
 	printf "---\n"
-} | mail -s "${ARCH}-stable packages to sign" -r solene@openbsd.org solene@openbsd.org
+} | mail -s "${ARCH}-stable packages to sign" -r devnull@openbsd.org solene@openbsd.org sthen@openbsd.org pea@openbsd.org naddy@openbsd.org
 
-#rm config/rsync_output
+rm config/rsync_output
