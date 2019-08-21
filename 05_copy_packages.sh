@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-ARCH=$(sysctl -n hw.machine)
+ARCH=$(machine -a)
 LISTE=$(mktemp /tmp/filelist.XXXXXXXXXXXXXXXXXX)
 
 make -C /home/ports SUBDIRLIST=~/fulllist show=PKGNAMES | grep -v "^=" | tr ' ' '\n' | sed 's,$,\.tgz,' | sort | uniq > "${LISTE}"

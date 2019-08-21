@@ -3,7 +3,7 @@
 set -x
 set -e
 
-ARCH=$(sysctl -n hw.machine)
+ARCH=$(machine -a)
 LOGDIR="/mnt/logs-stable/${ARCH}/$(date +%Y%m%d-%H%M)"
 
 doas mkdir -p $LOGDIR
