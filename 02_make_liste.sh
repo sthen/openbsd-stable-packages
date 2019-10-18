@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export CVSREADONLYFS=1
 DESTLIST=/home/builder/fulllist
 TMPLIST=config/tmppkgliste
 
