@@ -12,6 +12,7 @@ if [ "$LINES" -ne 0 ]
 then
 	set -x
 	set -e
+    ./02_make_list.sh
 	./03_clean_packages.sh
 	./04_make.sh
 	./05_copy_packages.sh
