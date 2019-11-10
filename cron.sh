@@ -11,8 +11,8 @@ LINES=$(./01_update_ports.sh | wc -l | awk '{ print $1 }')
 if [ "$LINES" -ne 0 ]
 then
 	set -x
-	set -e
     ./02_make_list.sh
+	set -e
 	./03_clean_packages.sh
 	./04_make.sh
 	./05_copy_packages.sh
