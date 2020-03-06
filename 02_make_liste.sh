@@ -12,9 +12,9 @@ rm -f $DESTLIST
 # sed will format display
 # awk removes folder categories
 cvs -d /cvs rdiff -s  -r OPENBSD_6_6_BASE -r OPENBSD_6_6 ports/ 2>/dev/null | \
-	grep -E '/Makefile(.inc)? ' | \
-	sed -E 's,^File ports/(.*)/Makefile(.inc)? .*,\1,' | \
-	grep -v "^sysutils/firmware" | \
+	grep -E '/(distinfo|Makefile(.inc)?) ' | \
+	sed -E 's,^File ports/(.*)/(distinfo|Makefile(.inc)?) .*,\1,' | \
+	grep -v "^sysutils/firmware" | sort | uniq | \
 	awk '{
 		if(NR==1) {
 			line=$0
