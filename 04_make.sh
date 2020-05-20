@@ -11,7 +11,7 @@ doas mkdir -p $LOGDIR
 cd /home/ports
 
 
-make SUBDIRLIST=~/fulllist BULK=yes package 2>&1 | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+env SUBDIRLIST=~/fulllist BULK=yes make package 2>&1 | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
 
 
 for logs in /mnt/logs-stable/${ARCH}/*tar.gz
