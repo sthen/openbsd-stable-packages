@@ -16,10 +16,10 @@ done
 	# count number of packages per arch
 	for arch in $ARCHS
 	do
-		printf "%i (+%i -debug packages) packages for %s\n" \
+		printf "%-8s %3i + %3i -debug packages\n" \
+	"$arch" \
 	"$(grep tgz$ /tmp/${arch}_rsync.txt | grep -v ^debug- | sort | uniq | wc -l | awk '{ print $1 }')" \
-	"$(grep tgz$ /tmp/${arch}_rsync.txt | grep ^debug- | sort | uniq | wc -l | awk '{ print $1 }')" \
-	"$arch"
+	"$(grep tgz$ /tmp/${arch}_rsync.txt | grep ^debug- | sort | uniq | wc -l | awk '{ print $1 }')"
 	done
         printf "---\n"
 
