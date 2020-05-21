@@ -10,7 +10,7 @@ doas mkdir -p $LOGDIR
 cd /home/ports
 
 
-env SUBDIRLIST=~/fulllist BULK=yes make package 2>&1 | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+env REPORT_PROBLEM=true SUBDIRLIST=~/fulllist BULK=yes make package 2>&1 | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
 
 
 for logs in /mnt/logs-stable/${ARCH}/*tar.gz
