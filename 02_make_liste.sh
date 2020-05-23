@@ -35,4 +35,5 @@ do
 	printf "SELECT DISTINCT fullpkgpath from ports where fullpkgpath like '%s' or  fullpkgpath like '%s,%%'" "$port"  "$port" | sqlite3 /usr/local/share/sqlports >> $DESTLIST
 done
 
+cat config/include.txt $DESTLIST | sort | uniq > $DESTLIST
 echo "devel/quirks" >> $DESTLIST
