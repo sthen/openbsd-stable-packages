@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 
 export CVSREADONLYFS=1
 DESTLIST=/home/builder/fulllist
@@ -35,5 +36,6 @@ do
 	printf "SELECT DISTINCT fullpkgpath from ports where fullpkgpath like '%s' or  fullpkgpath like '%s,%%'" "$port"  "$port" | sqlite3 /usr/local/share/sqlports >> $DESTLIST
 done
 
-cat config/include.txt $DESTLIST | sort | uniq > $DESTLIST
+cat config/include.txt $DESTLIST | sort | uniq > ${DESTLIST}.new
+mv ${DESTLIST}.new $DESTLIST
 echo "devel/quirks" >> $DESTLIST

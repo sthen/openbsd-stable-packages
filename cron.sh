@@ -13,10 +13,8 @@ then
 	set -x
 	./02_make_liste.sh
 	set -e
-	./03_clean_packages.sh
-	./04_make.sh
-	./05_copy_packages.sh
-	./06_send_mail.sh
+	./10_start_remote.sh
+	./07_send_mail_global.sh
 else
 	echo "nothing to do"
 fi

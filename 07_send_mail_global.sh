@@ -10,6 +10,13 @@ do
 	scp $REMOTE:scripts/config/rsync_output /tmp/${arch}_output.txt
 done
 
+grep tgz$ /tmp/*_output.txt
+if [ $? -ne 0 ]
+then
+	echo "No package ?!" | mail -s "no package stable" solene@openbsd.org
+	exit 1
+fi
+
 # generate some build stats for the mail
 {
         printf "Hello. New package(s) to sign.\n\n---\n"

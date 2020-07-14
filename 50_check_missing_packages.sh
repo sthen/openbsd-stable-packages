@@ -10,9 +10,9 @@ for port in $(cat $TMPLIST)
 do
 	for dep in $(printf "SELECT DISTINCT fullpkgpath from ports where fullpkgpath like '%s' and not pkgspec LIKE '%%*' ;" "$port" | sqlite3 /usr/local/share/sqlports)
 	do
-		show-reverse-deps "$dep" | tee -a $TMPFILE
+		show-reverse-deps "$dep" >> $TMPFILE
 	done
 done
 
-echo "pkgpath that should be included or excluded"
-cat config/{include,exclude}.txt $TMPFILE | sort | uniq
+echo "pkgpath that should be included or excluded (if any)"
+cat config/{include,exclude}.txt $TMPFILE | sort | uniq -u
