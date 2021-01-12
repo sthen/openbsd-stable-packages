@@ -33,7 +33,7 @@ cvs -d /cvs rdiff -s  -r OPENBSD_6_8_BASE -r OPENBSD_6_8 ports/ 2>/dev/null | \
 
 for port in $(cat $TMPLIST)
 do
-	printf "SELECT DISTINCT fullpkgpath from ports where fullpkgpath like '%s' or  fullpkgpath like '%s,%%'" "$port"  "$port" | sqlite3 /usr/local/share/sqlports >> $DESTLIST
+	printf "SELECT DISTINCT fullpkgpath from ports where fullpkgpath like '%s' or  fullpkgpath like '%s,%%' or fullpkgpath like '%s/%%'" "$port"  "$port" "$port" | sqlite3 /usr/local/share/sqlports >> $DESTLIST
 done
 
 cat config/include.txt $DESTLIST | sort | uniq > ${DESTLIST}.new
