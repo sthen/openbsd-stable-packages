@@ -12,7 +12,7 @@ rm -f $DESTLIST
 # grep only keep ports where the makefile changed
 # sed will format display
 # awk removes folder categories
-cvs -d /cvs rdiff -s  -r OPENBSD_7_0_BASE -r OPENBSD_7_0 ports/ 2>/dev/null | \
+cvs -d /cvs rdiff -s  -r OPENBSD_7_1_BASE -r OPENBSD_7_1 ports/ 2>/dev/null | \
 	grep -E '/(distinfo|Makefile(.inc)?) ' | \
 	sed -E 's,^File ports/(.*)/(distinfo|Makefile(.inc)?) .*,\1,' | \
 	grep -v "^sysutils/firmware" | sort | uniq | \
