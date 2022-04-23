@@ -31,3 +31,10 @@ builder $ ./02_make_liste.sh
 $ cd scripts
 $ ./01_update_ports.sh
 $ ./02_make_liste.sh
+
+### check everything is fine
+builder $ cd scripts
+builder $ ./01_update_ports.sh
+builder $ ./02_make_liste.sh
+
+- enable crontab on builder@amd64
