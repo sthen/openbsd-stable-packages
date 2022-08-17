@@ -1,4 +1,10 @@
-Scripts should be started in the correct order:
+Usage
+
+Run cron.sh, this will trigger 10_start_remote.sh from a single machine
+to start building on all the servers, if something changed on the cvs tree
+
+
+Scripts description
 
 01_update_ports.sh	update the ports tree in /home/ports
 
@@ -13,5 +19,11 @@ Scripts should be started in the correct order:
 
 06_send_mail.sh		send a mail to tell sthen@ and naddy@ about packages
 			to sign
+
+-- 
+
+07_send_mail_global.sh  send a single mail combining all architectures output
+
+10_start_remote.sh      run the building job on all architectures from a single server
 
 The /build partition doesn't contain any important information and could be formatted if needed.
