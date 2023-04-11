@@ -37,6 +37,9 @@ fi
 		grep tgz$ /tmp/${arch}_output.txt  | sort | uniq | sed "s,^,$arch	,"
 	done
 
+        printf "\nChanges triggering the build:\n"
+        cat /home/builder/scripts/config/changes.txt
+
 } | mail -s "stable packages to sign" -r "Stable <solene@openbsd.org>" solene@openbsd.org sthen@openbsd.org pea@openbsd.org naddy@openbsd.org 
 
 # clear the remotes rsync output file
