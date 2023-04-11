@@ -6,7 +6,13 @@ then
 	exit 0
 fi
 
-LINES=$(./01_update_ports.sh | wc -l | awk '{ print $1 }')
+if [ "$#" -ne 1 ]
+then
+  LINES=$(./01_update_ports.sh | tee /home/builder/scripts/config/changes.txt | wc -l | awk '{ print $1 }')
+else
+  echo "Forcing"
+  LINES="1"
+fi
 
 if [ "$LINES" -ne 0 ]
 then
