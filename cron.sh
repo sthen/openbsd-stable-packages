@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$(pgrep -f "^sh cron\.sh$" | grep -v $$)" -ne 0 ]
+if [ "$(pgrep -f "^sh cron\.sh" | grep -v $$)" -ne 0 ]
 then
 	echo "$0 is already running"
 	exit 0
