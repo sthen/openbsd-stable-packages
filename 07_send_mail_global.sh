@@ -26,15 +26,15 @@ fi
 	do
 		printf "%-8s %3i + %3i -debug packages\n" \
 	"$arch" \
-	"$(grep tgz$ /tmp/${arch}_output.txt | grep -v ^debug- | sort | uniq | wc -l | awk '{ print $1 }')" \
-	"$(grep tgz$ /tmp/${arch}_output.txt | grep ^debug- | sort | uniq | wc -l | awk '{ print $1 }')"
+	"$(grep tgz$ /tmp/${arch}_output.txt | grep -v ^quirks | grep -v ^debug- | sort | uniq | wc -l | awk '{ print $1 }')" \
+	"$(grep tgz$ /tmp/${arch}_output.txt | grep -v ^quirks | grep ^debug- | sort | uniq | wc -l | awk '{ print $1 }')"
 	done
         printf "---\n"
 
 	# list every file built per arch with the arch as a beginning of lines
 	for arch in $ARCHS
 	do
-		grep tgz$ /tmp/${arch}_output.txt  | sort | uniq | sed "s,^,$arch	,"
+		grep tgz$ /tmp/${arch}_output.txt | grep -v ^quirks | sort | uniq | sed "s,^,$arch	,"
 	done
 
         printf "\nChanges triggering the build:\n"
