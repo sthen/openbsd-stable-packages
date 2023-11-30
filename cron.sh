@@ -21,6 +21,7 @@ then
 	set -e
 	./10_start_remote.sh
 	./07_send_mail_global.sh
+        exec sh cron.sh
 else
 	echo "nothing to do"
 fi
