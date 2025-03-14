@@ -23,5 +23,5 @@ then
 	./07_send_mail_global.sh
         exec sh cron.sh
 else
-	echo "nothing to do"
+	: # echo "nothing to do"
 fi
