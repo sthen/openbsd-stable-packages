@@ -9,9 +9,12 @@ doas mkdir -p $LOGDIR
 
 cd /home/ports
 
+# export REPORT_PROBLEM=/home/builder/scripts/error_handler.sh
+export REPORT_PROBLEM=true
 
-env REPORT_PROBLEM=true SUBDIRLIST=~/fulllist BULK=yes make package 2>&1 | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
-cd /home/ports/devel/quirks && make clean=all && make REPORT_PROBLE=true BULK=yes package | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+env SUBDIRLIST=~/fulllist BULK=yes PKG_PATH=/var/empty make package FETCH_PACKAGES= 2>&1 | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+cd /home/ports/devel/quirks && make clean=all && make REPORT_PROBLEM=/home/builder/scripts/error_handler.sh BULK=yes package | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+cd /home/ports/databases/updatedb && make clean=all && make REPORT_PROBLEM=/home/builder/scripts/error_handler.sh BULK=yes package | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
 
 
 for logs in /mnt/logs-stable/${ARCH}/*tar.gz
