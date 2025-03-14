@@ -14,6 +14,6 @@ set -x
 	printf "Hello. New package(s) to sign for ${ARCH}-stable.\n\n---\n"
 	grep tgz$ config/rsync_output
 	printf "---\n"
-} | mail -s "${ARCH}-stable packages to sign" -r "${ARCH}-stable <solene@openbsd.org>" solene@openbsd.org sthen@openbsd.org pea@openbsd.org naddy@openbsd.org
+} | mail -s "${ARCH}-stable packages to sign" -r "${ARCH}-stable <sthen@openbsd.org>" stu@spacehopper.org pea@openbsd.org naddy@openbsd.org
 
 rm config/rsync_output
