@@ -39,3 +39,4 @@ done
 cat config/include.txt $DESTLIST | sort | uniq > ${DESTLIST}.new
 mv ${DESTLIST}.new $DESTLIST
 echo "devel/quirks" >> $DESTLIST
+echo "databases/updatedb" >> $DESTLIST
