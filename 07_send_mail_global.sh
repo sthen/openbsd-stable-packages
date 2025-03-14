@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-ARCHS="amd64 i386 arm64 sparc64"
+ARCHS="amd64 i386"
 
 # fetch rsync output files
 for arch in $ARCHS
@@ -13,7 +13,7 @@ done
 grep tgz$ /tmp/*_output.txt
 if [ $? -ne 0 ]
 then
-	echo "No package ?!" | mail -s "no package stable" solene@openbsd.org
+	echo "No package ?!" | mail -s "no package stable" stu@spacehopper.org
 	exit 1
 fi
 
@@ -26,8 +26,8 @@ fi
 	do
 		printf "%-8s %3i + %3i -debug packages\n" \
 	"$arch" \
-	"$(grep tgz$ /tmp/${arch}_output.txt | grep -v ^quirks | grep -v ^debug- | sort | uniq | wc -l | awk '{ print $1 }')" \
-	"$(grep tgz$ /tmp/${arch}_output.txt | grep -v ^quirks | grep ^debug- | sort | uniq | wc -l | awk '{ print $1 }')"
+	"$(grep tgz$ /tmp/${arch}_output.txt | grep -v '^(quirks|updatedb)' | grep -v ^debug- | sort | uniq | wc -l | awk '{ print $1 }')" \
+	"$(grep tgz$ /tmp/${arch}_output.txt | grep -v '^(quirks|updatedb)' | grep ^debug- | sort | uniq | wc -l | awk '{ print $1 }')"
 	done
         printf "---\n"
 
@@ -40,7 +40,7 @@ fi
         printf "\nChanges triggering the build:\n"
         cat /home/builder/scripts/config/changes.txt
 
-} | mail -s "stable packages to sign" -r "Stable <solene@openbsd.org>" solene@openbsd.org sthen@openbsd.org pea@openbsd.org naddy@openbsd.org 
+} | mail -s "stable packages to sign" -r "Stable <sthen@openbsd.org>" stu@spacehopper.org pea@openbsd.org naddy@openbsd.org
 
 # clear the remotes rsync output file
 for arch in $ARCHS
