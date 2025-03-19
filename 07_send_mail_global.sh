@@ -1,5 +1,4 @@
-#!/bin/sh
-set -x
+#!/bin/ksh
 
 ARCHS="amd64 i386"
 
@@ -34,7 +33,7 @@ fi
 	# list every file built per arch with the arch as a beginning of lines
 	for arch in $ARCHS
 	do
-		grep tgz$ /tmp/${arch}_output.txt | grep -v ^quirks | sort | uniq | sed "s,^,$arch	,"
+		grep tgz$ /tmp/${arch}_output.txt | grep -v '^(quirks|updatedb)' | sort | uniq | sed "s,^,$arch	,"
 	done
 
         printf "\nChanges triggering the build:\n"
