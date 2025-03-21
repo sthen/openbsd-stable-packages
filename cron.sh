@@ -16,7 +16,6 @@ fi
 
 if [ "$LINES" -ne 0 ]
 then
-	set -x
 	./02_make_liste.sh
 	set -e
 	./10_start_remote.sh

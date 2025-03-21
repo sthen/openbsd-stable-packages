@@ -1,5 +1,4 @@
 #!/bin/sh
-set -x
 
 export CVSREADONLYFS=1
 DESTLIST=/home/builder/fulllist

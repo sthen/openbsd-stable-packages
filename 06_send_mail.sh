@@ -9,7 +9,6 @@ then
 	exit 0
 fi
 
-set -x
 {
 	printf "Hello. New package(s) to sign for ${ARCH}-stable.\n\n---\n"
 	grep tgz$ config/rsync_output
