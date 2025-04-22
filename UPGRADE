@@ -1,26 +1,27 @@
 - disable crontab on builder@amd64
 - bump OPENBSD_X_Y in the git repository
 
-root # sysupgrade
-root # sysmerge
-root # syspatch
-builder $ /home/builder/scripts/03_clean_packages.sh
-root # pkg_add -u
-root # pkg_add wget sysclean
-root # sysclean | grep ^/usr
-### check output
-root # sysclean | grep ^/usr | xargs rm -fr
+doas sysupgrade
+doas sysmerge
+doas syspatch
+doas -u builder /home/builder/scripts/03_clean_packages.sh
+doas pkg_add -u
+doas pkg_add wget sysclean
+doas sysclean | grep ^/usr > /tmp/a
+(check/rm)
+doas sysclean
 
 - removing files (list from upgrade67.html)
 
-root # find /home/packages/ -type f -delete
-root # rm -frv /build/tmp/pobj/.ccache
-root # rm -frv /home/ports/bulk/*
-root # find /mnt/packages-stable/ -mindepth 3 -name '*.tgz' -type f -delete
-root # install -d -o _pbuild -g _pbuild /home/ports/bulk
+doas find /home/packages/ -type f -delete
+doas rm -rf /build/tmp/pobj/.ccache
+doas rm -rfv /home/ports/bulk
+doas install -d -o _pbuild -g _pbuild /home/ports/bulk
+doas find /mnt/packages-stable/ -mindepth 3 -name '*.tgz' -type f
+(and -delete if ok)
 
-root # cd /home/packages/$(machine -a)/all/ && wget -c -A "*.tgz" --no-directories --no-parent --recursive https://fanout.openbsd.org/pub/OpenBSD/$(uname -r)/packages/$(machine -a)/
-root # chown -R _pbuild:_pbuild /home/packages/$(machine -a)
+cd /home/packages/$(machine -a)/all/ && wget -c -A "*.tgz" --no-directories --no-parent --recursive https://fanout.openbsd.org/pub/OpenBSD/$(uname -r)/packages/$(machine -a)/
+doas chown -R _pbuild:_pbuild /home/packages/$(machine -a)
 
 ### check everything is fine
 builder $ cd scripts
