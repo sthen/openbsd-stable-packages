@@ -24,16 +24,7 @@ cd /home/packages/$(machine -a)/all/ && wget -c -A "*.tgz" --no-directories --no
 doas chown -R _pbuild:_pbuild /home/packages/$(machine -a)
 
 ### check everything is fine
-builder $ cd scripts
-builder $ ./01_update_ports.sh
-builder $ ./02_make_liste.sh
-
-- enable crontab on builder@amd64
-$ cd scripts
-$ ./01_update_ports.sh
-$ ./02_make_liste.sh
-
-### check everything is fine
+doas su - builder
 builder $ cd scripts
 builder $ ./01_update_ports.sh
 builder $ ./02_make_liste.sh
