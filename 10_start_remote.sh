@@ -9,7 +9,7 @@ env SUBDIRLIST=~/fulllist BULK=yes make fetch
 for arch in amd64 i386 ; do
 	REMOTE=builder@${arch}-stable.ports.openbsd.org
 	scp config/*clude.txt ${REMOTE}:scripts/config/
-	openrsync -av ~/fulllist ${REMOTE}:
+	scp ~/fulllist ${REMOTE}:
 	ssh ${REMOTE} "cd scripts && ./01_update_ports.sh $PATHLIST && ./03_clean_packages.sh && ./04_make.sh && ./05_copy_packages.sh" &
 done
 
