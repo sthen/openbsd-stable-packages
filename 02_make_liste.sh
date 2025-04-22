@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/ksh
 
 export CVSREADONLYFS=1
-DESTLIST=/home/builder/fulllist
+DESTLIST=~/fulllist
 TMPLIST=config/tmppkgliste
 
 rm -f $TMPLIST
@@ -35,7 +35,7 @@ do
 	printf "SELECT DISTINCT fullpkgpath from ports where fullpkgpath like '%s' or  fullpkgpath like '%s,%%' or fullpkgpath like '%s/%%'" "$port"  "$port" "$port" | sqlite3 /usr/local/share/sqlports >> $DESTLIST
 done
 
-cat config/include.txt $DESTLIST | sort | uniq > ${DESTLIST}.new
+cat config/include.txt $DESTLIST | grep -v '^$' | sort | uniq > ${DESTLIST}.new
 mv ${DESTLIST}.new $DESTLIST
 echo "devel/quirks" >> $DESTLIST
 echo "databases/updatedb" >> $DESTLIST

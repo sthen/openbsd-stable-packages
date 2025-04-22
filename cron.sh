@@ -8,7 +8,7 @@ fi
 
 if [[ $# -ne 1 ]]; then
 	LINES=$(./01_update_ports.sh |
-		tee /home/builder/scripts/config/changes.txt | wc -l)
+		tee ~/scripts/config/changes.txt | wc -l)
 else
 	echo "Forcing"
 	LINES=1
