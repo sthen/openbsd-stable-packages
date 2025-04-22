@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+#!/bin/ksh -e
 
 ARCH=$(machine -a)
 LOGDIR="/mnt/logs-stable/${ARCH}/$(date +%Y%m%d-%H%M)"
@@ -12,15 +10,21 @@ cd /home/ports
 # export REPORT_PROBLEM=/home/builder/scripts/error_handler.sh
 export REPORT_PROBLEM=true
 
-env SUBDIRLIST=~/fulllist BULK=yes PKG_PATH=/var/empty make package FETCH_PACKAGES= 2>&1 | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
-cd /home/ports/devel/quirks && make clean=all && make REPORT_PROBLEM=/home/builder/scripts/error_handler.sh BULK=yes package | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
-cd /home/ports/databases/updatedb && make clean=all && make REPORT_PROBLEM=/home/builder/scripts/error_handler.sh BULK=yes package | doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+SUBDIRLIST=~/fulllist make package \
+	BULK=yes PKG_PATH=/var/empty FETCH_PACKAGES= 2>&1 |
+	doas /home/ports/infrastructure/bin/portslogger $LOGDIR
 
+for i in devel/quirks databases/updatedb; do
+	cd /home/ports/$i
+	make clean=all
+	make REPORT_PROBLEM=~/scripts/error_handler.sh BULK=yes package |
+		doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+done
 
 for logs in /mnt/logs-stable/${ARCH}/*tar.gz
 do
-	FOLDER=$(echo $logs | sed 's/\.tar\.gz//')
-	test -d "$FOLDER" && doas rm -fr "$FOLDER"
+	DIR=${logs%.tar.gz}
+	test -d "$DIR" && doas rm -fr "$FOLDER"
 done
 
 # compress logs
