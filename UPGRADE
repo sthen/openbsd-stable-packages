@@ -6,7 +6,7 @@ doas sysmerge
 doas syspatch
 doas -u builder /home/builder/scripts/03_clean_packages.sh
 doas pkg_add -u
-doas pkg_add wget sysclean
+doas pkg_add wget sysclean rsync-- sqlports-- git-- ccache
 doas sysclean | grep ^/usr > /tmp/a
 (check/rm)
 doas sysclean

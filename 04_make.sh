@@ -10,14 +10,16 @@ cd /home/ports
 # export REPORT_PROBLEM=/home/builder/scripts/error_handler.sh
 export REPORT_PROBLEM=true
 
+doas env PKG_PATH=/home/packages/$ARCH/ftp pkg_add -r -D unsigned glib2
+
 SUBDIRLIST=~/fulllist make package \
-	BULK=yes PKG_PATH=/var/empty FETCH_PACKAGES= 2>&1 |
+	BULK=yes PKG_PATH=/var/empty FETCH_PACKAGES= 2>&1 | \
 	doas /home/ports/infrastructure/bin/portslogger $LOGDIR
 
 for i in devel/quirks databases/updatedb; do
 	cd /home/ports/$i
 	make clean=all
-	make REPORT_PROBLEM=~/scripts/error_handler.sh BULK=yes package |
+	make REPORT_PROBLEM=~/scripts/error_handler.sh BULK=yes package | \
 		doas /home/ports/infrastructure/bin/portslogger $LOGDIR
 done
 

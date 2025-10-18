@@ -21,8 +21,8 @@ fi
 	# count number of packages per arch
 	for arch in $ARCHS; do
 		printf "%-8s %3i + %3i -debug packages\n" "$arch" \
-		"$(grep tgz$ /tmp/${arch}_output.txt | grep -Ev '^(quirks|updatedb)' | grep -v ^debug- | sort | uniq | wc -l)" \
-		"$(grep tgz$ /tmp/${arch}_output.txt | grep -Ev '^(quirks|updatedb)' | grep ^debug- | sort | uniq | wc -l)"
+		"$(grep tgz$ /tmp/${arch}_output.txt | grep -Ev '^(quirks|updatedb|sqlports|portslist)' | grep -v ^debug- | sort | uniq | wc -l)" \
+		"$(grep tgz$ /tmp/${arch}_output.txt | grep -Ev '^(quirks|updatedb|sqlports|portslist)' | grep ^debug- | sort | uniq | wc -l)"
 	done
         printf "---\n"
 
