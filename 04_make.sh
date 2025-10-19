@@ -10,7 +10,7 @@ cd /home/ports
 # export REPORT_PROBLEM=/home/builder/scripts/error_handler.sh
 export REPORT_PROBLEM=true
 
-doas env PKG_PATH=/home/packages/$ARCH/ftp pkg_add -r -D unsigned glib2
+doas env PKG_PATH=/home/packages/$ARCH/all pkg_add -r -D unsigned glib2
 
 SUBDIRLIST=~/fulllist make package \
 	BULK=yes PKG_PATH=/var/empty FETCH_PACKAGES= 2>&1 | \
