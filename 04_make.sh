@@ -15,7 +15,7 @@ export REPORT_PROBLEM_LOGFILE=$LOGDIR/ZZ-build-problems
 
 SUBDIRLIST=~/fulllist make package \
 	BULK=yes PKG_PATH=/var/empty FETCH_PACKAGES= 2>&1 | \
-	doas /home/ports/infrastructure/bin/portslogger $LOGDIR
+	/home/ports/infrastructure/bin/portslogger $LOGDIR > /dev/null
 
 for i in devel/quirks databases/updatedb; do
 	cd /home/ports/$i
@@ -23,6 +23,8 @@ for i in devel/quirks databases/updatedb; do
 	make REPORT_PROBLEM=~/scripts/error_handler.sh BULK=yes package 2>&1 | \
 		/home/ports/infrastructure/bin/portslogger $LOGDIR
 done
+
+cat $LOGDIR/ZZ-build-problems
 
 # compress and remove old logs
 tar czvf "${LOGDIR}.tar.gz" "${LOGDIR}"
