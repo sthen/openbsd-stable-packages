@@ -11,7 +11,8 @@ rm -f $DESTLIST
 # grep only keep ports where the makefile changed
 # sed will format display
 # awk removes folder categories
-cvs -d /cvs rdiff -s  -r OPENBSD_7_8_BASE -r OPENBSD_7_8 ports/ 2>/dev/null | \
+cvs -q -d /cvs rdiff -s  -r OPENBSD_7_8_BASE -r OPENBSD_7_8 ports/ 2>/dev/null | \
+	tee /dev/stderr | \
 	grep -E '/(distinfo|Makefile(.inc)?) ' | \
 	sed -E 's,^File ports/(.*)/(distinfo|Makefile(.inc)?) .*,\1,' | \
 	grep -v "^sysutils/firmware" | sort | uniq | \
@@ -36,7 +37,7 @@ do
 done
 
 cat config/include.txt $DESTLIST | grep -v '^$' | sort | uniq > ${DESTLIST}.new
+# these should be built at the end
+echo "devel/quirks" >> ${DESTLIST}.new
+echo "databases/updatedb" >> ${DESTLIST}.new
 mv ${DESTLIST}.new $DESTLIST
-echo "devel/quirks" >> $DESTLIST
-echo "databases/updatedb" >> $DESTLIST
-echo "databases/sqlports" >> $DESTLIST
