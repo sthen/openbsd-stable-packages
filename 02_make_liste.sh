@@ -12,8 +12,8 @@ rm -f $DESTLIST
 # sed will format display
 # awk removes folder categories
 cvs -q -d /cvs rdiff -s  -r OPENBSD_7_8_BASE -r OPENBSD_7_8 ports/ 2>/dev/null | \
-	tee /dev/stderr | \
 	grep -E '/(distinfo|Makefile(.inc)?) ' | \
+	tee /dev/stderr | \
 	sed -E 's,^File ports/(.*)/(distinfo|Makefile(.inc)?) .*,\1,' | \
 	grep -v "^sysutils/firmware" | sort | uniq | \
 	awk '{
