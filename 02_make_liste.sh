@@ -37,7 +37,4 @@ do
 done
 
 cat config/include.txt $DESTLIST | grep -v '^$' | sort | uniq > ${DESTLIST}.new
-# these should be built at the end
-echo "devel/quirks" >> ${DESTLIST}.new
-echo "databases/updatedb" >> ${DESTLIST}.new
 mv ${DESTLIST}.new $DESTLIST
