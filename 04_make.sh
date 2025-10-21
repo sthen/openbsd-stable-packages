@@ -25,7 +25,7 @@ for i in devel/quirks databases/updatedb; do
 done
 
 if [[ -r ${LOGDIR}/ZZ-build-problems ]]; then
-	echo build problems:
+	echo $ARCH build problems:
 	cat "${LOGDIR}/ZZ-build-problems"
 fi
 
