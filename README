@@ -8,7 +8,7 @@ Scripts description
 
 01_update_ports.sh	update the ports tree in /home/ports
 
-02_make_liste.sh	create ~/fullpkglist containing ports to build
+02_make_list.sh	create ~/fullpkglist containing ports to build
 
 03_clean_packages.sh	delete extra packages and reinstall sqlports and rsync
 

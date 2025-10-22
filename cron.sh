@@ -15,7 +15,7 @@ else
 fi
 
 if [[ $LINES -ne 0 ]]; then
-	./02_make_liste.sh
+	./02_make_list.sh
 	set -e
 	./10_start_remote.sh
 	./07_send_mail_global.sh

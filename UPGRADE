@@ -27,6 +27,6 @@ doas chown -R _pbuild:_pbuild /home/packages/$(machine -a)
 doas su - builder
 builder $ cd scripts
 builder $ ./01_update_ports.sh
-builder $ ./02_make_liste.sh
+builder $ ./02_make_list.sh
 
 - enable crontab on builder@amd64

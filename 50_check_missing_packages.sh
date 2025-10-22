@@ -2,7 +2,7 @@
 
 export CVSREADONLYFS=1
 
-TMPLIST=config/tmppkgliste
+TMPLIST=config/tmppkglist
 TMPFILE=$(mktemp /tmp/file.XXXXXXXXXXXXXXXXXXXXXXXX)
 
 

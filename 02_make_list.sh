@@ -2,7 +2,7 @@
 
 export CVSREADONLYFS=1
 DESTLIST=~/fulllist
-TMPLIST=config/tmppkgliste
+TMPLIST=config/tmppkglist
 
 rm -f $TMPLIST
 rm -f $DESTLIST
