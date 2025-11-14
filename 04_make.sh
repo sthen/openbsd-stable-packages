@@ -33,5 +33,5 @@ cd "/mnt/logs-stable/old/${ARCH}"
 LOGSUBDIR="$(date +%Y%m%d-%H%M)"
 mv "${LOGDIR}" "$LOGSUBDIR"
 tar czvf "${LOGSUBDIR}.tar.gz" "${LOGSUBDIR}"
-find "/mnt/logs-stable/old/${ARCH}" -type d -mindepth 1 -maxdepth 1 -mtime +21 -exec {} +
+find "/mnt/logs-stable/old/${ARCH}" -type d -mindepth 1 -maxdepth 1 -mtime +21 -exec rm -r {} +
 
