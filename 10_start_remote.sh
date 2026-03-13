@@ -1,7 +1,5 @@
 #!/bin/ksh
 
-PATHLIST=$(cut -d '/' -f 1-2 config/tmppkglist | sort | uniq | tr '\n' ' ')
-
 # fetch distfiles to avoid issues
 cd /home/ports
 env SUBDIRLIST=~/fulllist BULK=yes make fetch
